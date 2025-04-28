@@ -5,7 +5,6 @@ use std::sync::mpsc;
 use std::thread;
 use clap::Parser;
 
-/// POW挖矿程序 - 寻找满足前导零条件的nonce
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
@@ -41,7 +40,6 @@ fn main() {
     // 每个线程负责不同范围的nonce
     let chunk_size = u64::MAX / num_threads as u64;
     
-    // 启动状态报告线程
     let report_hash_count = hash_count.clone();
     let report_found = found.clone();
     let report_handle = thread::spawn(move || {
@@ -111,7 +109,6 @@ fn mine_range(
     found: Arc<AtomicBool>,
     hash_count: Arc<AtomicU64>
 ) {
-    // 创建目标前缀，例如 "000000" 表示6个十六进制前导零
     let target_prefix = "0".repeat(difficulty);
     
     let mut nonce = start;
@@ -119,7 +116,6 @@ fn mine_range(
     let mut local_hash_count = 0u64;
     
     while nonce <= end && !found.load(Ordering::Relaxed) {
-        // 重置哈希器状态
         hasher.reset();
         
         // 计算 prefix + nonce 的哈希值
