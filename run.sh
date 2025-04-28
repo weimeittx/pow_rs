@@ -1,1 +1,1 @@
-cargo run --release -- --difficulty 7
+cargo run --release -- --difficulty 6
