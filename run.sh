@@ -1,1 +1,1 @@
-./target/release/pow_rs --difficulty 7
+cargo run --release -- --difficulty 7
