@@ -1,0 +1,1 @@
+./target/release/pow_rs --difficulty 7
