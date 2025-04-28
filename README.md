@@ -1,4 +1,7 @@
-cargo build -r
+构建:
 
-./pow_rs -d 7
+./build.sh
 
+运行
+
+./run.sh
